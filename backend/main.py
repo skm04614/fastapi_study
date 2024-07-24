@@ -1,18 +1,12 @@
 import uvicorn
 from fastapi import FastAPI, APIRouter
 
-from database import Base, engine
-
 
 def get_app():
     api_router = APIRouter(prefix="/api")
 
     app = FastAPI()
     app.include_router(api_router)
-
-    @app.on_event("startup")
-    def on_startup():
-        Base.metadata.create_all(bind=engine)
 
     return app
 
