@@ -1,9 +1,12 @@
 import uvicorn
 from fastapi import FastAPI, APIRouter
 
+from backend.domain.question.question_api import router as question_router
+
 
 def get_app():
     api_router = APIRouter(prefix="/api")
+    api_router.include_router(question_router)
 
     app = FastAPI()
     app.include_router(api_router)
